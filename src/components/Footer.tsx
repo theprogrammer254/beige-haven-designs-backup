@@ -1,4 +1,5 @@
 import { Instagram, Facebook, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,7 +18,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
-              Elegance Interiors
+              Epique Interiors
             </h3>
             <p className="text-muted-foreground">
               Transforming spaces into timeless elegance through bespoke design and architectural excellence.
@@ -28,14 +29,20 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {["Home", "Projects", "Services", "About", "Contact"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link.toLowerCase()}`}
+              {[
+                { name: "Home", path: "/" },
+                { name: "Gallery", path: "/gallery" },
+                { name: "Services", path: "/services" },
+                { name: "About", path: "/about" },
+                { name: "Contact", path: "/contact" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -63,7 +70,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border pt-8 text-center text-muted-foreground">
-          <p>© {currentYear} Elegance Interiors. All rights reserved.</p>
+          <p>© {currentYear} Epique Interiors. All rights reserved.</p>
         </div>
       </div>
     </footer>
