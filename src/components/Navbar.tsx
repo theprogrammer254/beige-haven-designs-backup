@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,11 +17,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "Services", href: "#services" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Services", href: "/services" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -30,24 +32,28 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <a href="#home" className="text-2xl font-heading font-bold text-foreground">
-            Elegance Interiors
-          </a>
+          <Link to="/" className="text-2xl font-heading font-bold text-foreground hover:text-primary transition-colors">
+            Epique Interiors
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                to={link.href}
+                className={`text-foreground hover:text-primary transition-colors duration-300 font-medium ${
+                  location.pathname === link.href ? "text-primary" : ""
+                }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <Button variant="default" size="lg">
-              Get Started
-            </Button>
+            <Link to="/contact">
+              <Button variant="default" size="lg">
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -63,18 +69,22 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 bg-background border-t border-border">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
-                className="block py-3 text-foreground hover:text-primary transition-colors"
+                to={link.href}
+                className={`block py-3 text-foreground hover:text-primary transition-colors ${
+                  location.pathname === link.href ? "text-primary" : ""
+                }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <Button variant="default" size="lg" className="w-full mt-4">
-              Get Started
-            </Button>
+            <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button variant="default" size="lg" className="w-full mt-4">
+                Get Started
+              </Button>
+            </Link>
           </div>
         )}
       </div>
