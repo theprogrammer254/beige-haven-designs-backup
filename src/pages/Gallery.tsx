@@ -33,6 +33,13 @@ const galleryItems = [
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  const categories = ["All", ...Array.from(new Set(galleryItems.map(item => item.category)))];
+
+  const filteredItems = selectedCategory === "All" 
+    ? galleryItems 
+    : galleryItems.filter(item => item.category === selectedCategory);
 
   return (
     <>
@@ -48,48 +55,88 @@ const Gallery = () => {
         />
         <link rel="canonical" href="https://epiqueinteriors.com/gallery" />
       </Helmet>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-background">
         <Navbar />
         <main className="pt-20">
           {/* Hero Section */}
-          <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/20">
+          <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/20 to-background">
             <div className="container mx-auto px-4 text-center">
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6 fade-in">
-                Our Portfolio
+              <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4 fade-in">
+                Our Work
+              </span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-foreground mb-6 fade-in">
+                Project Gallery
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto fade-in">
-                Discover our collection of thoughtfully designed spaces that blend elegance with functionality
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto fade-in leading-relaxed">
+                Discover our collection of thoughtfully designed spaces that blend timeless elegance with modern functionality
               </p>
+            </div>
+          </section>
+
+          {/* Filter Tabs */}
+          <section className="py-8 border-b border-border bg-background/50 backdrop-blur-sm sticky top-20 z-40">
+            <div className="container mx-auto px-4">
+              <div className="flex flex-wrap justify-center gap-3">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                      selectedCategory === category
+                        ? "bg-primary text-primary-foreground shadow-md"
+                        : "bg-secondary/50 text-foreground hover:bg-secondary hover:shadow-sm"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
             </div>
           </section>
 
           {/* Gallery Grid */}
           <section className="py-16">
             <div className="container mx-auto px-4">
+              <div className="text-center mb-8">
+                <p className="text-muted-foreground">
+                  Showing <span className="font-semibold text-foreground">{filteredItems.length}</span> {filteredItems.length === 1 ? 'project' : 'projects'}
+                </p>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {galleryItems.map((item, index) => (
+                {filteredItems.map((item, index) => (
                   <div
                     key={index}
-                    className="group relative overflow-hidden rounded-lg cursor-pointer hover-scale fade-in"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={() => setSelectedImage(index)}
+                    className="group relative overflow-hidden rounded-xl cursor-pointer hover-scale fade-in bg-card border border-border shadow-md hover:shadow-xl transition-all duration-300"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                    onClick={() => setSelectedImage(galleryItems.indexOf(item))}
                   >
                     <div className="aspect-square overflow-hidden bg-secondary/20">
                       <img
                         src={item.src}
                         alt={item.alt}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                       <div>
-                        <p className="text-background text-sm font-medium mb-1">{item.category}</p>
-                        <h3 className="text-background text-xl font-heading font-bold">View Project</h3>
+                        <span className="inline-block px-3 py-1 bg-background/20 backdrop-blur-sm rounded-full text-background text-xs font-medium mb-3 uppercase tracking-wider">
+                          {item.category}
+                        </span>
+                        <h3 className="text-background text-xl font-heading font-bold mb-2">View Full Project</h3>
+                        <p className="text-background/90 text-sm line-clamp-2">{item.alt}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
+
+              {filteredItems.length === 0 && (
+                <div className="text-center py-20">
+                  <p className="text-muted-foreground text-lg">No projects found in this category.</p>
+                </div>
+              )}
             </div>
           </section>
         </main>
@@ -98,19 +145,45 @@ const Gallery = () => {
 
       {/* Lightbox Dialog */}
       <Dialog open={selectedImage !== null} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-7xl w-full p-0 bg-background/95">
+        <DialogContent className="max-w-7xl w-full p-0 bg-background/98 backdrop-blur-lg">
           {selectedImage !== null && (
             <div className="relative">
-              <img
-                src={galleryItems[selectedImage].src}
-                alt={galleryItems[selectedImage].alt}
-                className="w-full h-auto max-h-[90vh] object-contain"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 to-transparent p-6">
-                <p className="text-background text-sm font-medium mb-1">
-                  {galleryItems[selectedImage].category}
-                </p>
-                <p className="text-background/90 text-sm">{galleryItems[selectedImage].alt}</p>
+              <div className="relative bg-black/50 flex items-center justify-center min-h-[60vh] max-h-[85vh]">
+                <img
+                  src={galleryItems[selectedImage].src}
+                  alt={galleryItems[selectedImage].alt}
+                  className="w-full h-auto max-h-[85vh] object-contain"
+                />
+              </div>
+              <div className="p-6 bg-background">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <span className="inline-block px-3 py-1 bg-primary/10 rounded-full text-primary text-xs font-medium mb-3 uppercase tracking-wider">
+                      {galleryItems[selectedImage].category}
+                    </span>
+                    <p className="text-foreground text-base leading-relaxed">{galleryItems[selectedImage].alt}</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedImage(selectedImage > 0 ? selectedImage - 1 : galleryItems.length - 1);
+                      }}
+                      className="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors text-sm font-medium"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedImage(selectedImage < galleryItems.length - 1 ? selectedImage + 1 : 0);
+                      }}
+                      className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors text-sm font-medium"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           )}

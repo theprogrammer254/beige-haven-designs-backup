@@ -27,13 +27,17 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-md" : "bg-transparent"
+        isScrolled ? "bg-background/98 backdrop-blur-md shadow-lg border-b border-border" : "bg-background/80 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="text-2xl font-heading font-bold text-foreground hover:text-primary transition-colors">
+          <Link 
+            to="/" 
+            className="text-2xl md:text-3xl font-heading font-bold text-foreground hover:text-primary transition-colors relative group"
+          >
             Epique Interiors
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -42,15 +46,18 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className={`text-foreground hover:text-primary transition-colors duration-300 font-medium ${
+                className={`relative text-foreground hover:text-primary transition-colors duration-300 font-medium group ${
                   location.pathname === link.href ? "text-primary" : ""
                 }`}
               >
                 {link.name}
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                  location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                }`}></span>
               </Link>
             ))}
             <Link to="/contact">
-              <Button variant="default" size="lg">
+              <Button variant="default" size="lg" className="shadow-md hover:shadow-lg transition-shadow">
                 Get Started
               </Button>
             </Link>
@@ -58,8 +65,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-foreground hover:text-primary transition-colors p-2 rounded-lg hover:bg-primary/10"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -67,21 +75,24 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-background border-t border-border">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className={`block py-3 text-foreground hover:text-primary transition-colors ${
-                  location.pathname === link.href ? "text-primary" : ""
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+          <div className="md:hidden py-6 bg-background/98 backdrop-blur-md border-t border-border animate-in slide-in-from-top duration-300">
+            <div className="space-y-1">
+              {navLinks.map((link, index) => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={`block py-3 px-4 rounded-lg text-foreground hover:text-primary hover:bg-primary/5 transition-all ${
+                    location.pathname === link.href ? "text-primary bg-primary/10 font-semibold" : ""
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button variant="default" size="lg" className="w-full mt-4">
+              <Button variant="default" size="lg" className="w-full mt-6 shadow-md">
                 Get Started
               </Button>
             </Link>

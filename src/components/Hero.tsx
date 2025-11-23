@@ -59,21 +59,26 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10 text-center fade-in">
-        <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground mb-6 leading-tight">
+        <div className="inline-block mb-4">
+          <span className="px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full text-sm font-medium text-foreground border border-primary/30">
+            Award-Winning Design Studio
+          </span>
+        </div>
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-foreground mb-6 leading-tight">
           Transforming Spaces<br />Into Timeless Elegance
         </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Bespoke interior design and architectural services that bring your vision to life
+        <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
+          Bespoke interior design and architectural services that bring your vision to life with sophistication and style
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link to="/gallery">
-            <Button size="lg" className="text-lg group">
+            <Button size="lg" className="text-lg group px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-shadow">
               Explore Our Work
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
           </Link>
           <Link to="/contact">
-            <Button size="lg" variant="outline" className="text-lg">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto border-2 backdrop-blur-sm bg-background/80 hover:bg-background">
               Schedule Consultation
             </Button>
           </Link>
