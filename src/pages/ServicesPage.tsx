@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { PenTool, Home, Lightbulb, Palette, Ruler, Sparkles } from "lucide-react";
+import Testimonials from "@/components/Testimonials";
+import heroInterior from "@/assets/hero-interior.jpg";
+import { PenTool, Home, Lightbulb, Palette, Ruler, Sparkles, Search, FileText, Wrench, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const services = [
@@ -49,6 +51,29 @@ const services = [
   },
 ];
 
+const process = [
+  {
+    icon: Search,
+    title: "Discovery & Consultation",
+    description: "We begin with an in-depth consultation to understand your vision, lifestyle, and requirements.",
+  },
+  {
+    icon: FileText,
+    title: "Design Concept",
+    description: "Our team creates detailed design concepts, mood boards, and initial plans tailored to your space.",
+  },
+  {
+    icon: Wrench,
+    title: "Implementation",
+    description: "We coordinate with trusted contractors and suppliers to bring your design to life with precision.",
+  },
+  {
+    icon: CheckCircle,
+    title: "Final Touches",
+    description: "We oversee the installation and add those finishing touches that make your space extraordinary.",
+  },
+];
+
 const ServicesPage = () => {
   return (
     <>
@@ -68,8 +93,12 @@ const ServicesPage = () => {
         <Navbar />
         <main className="pt-20">
           {/* Hero Section */}
-          <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/20">
-            <div className="container mx-auto px-4 text-center">
+          <section className="relative py-20 bg-gradient-to-br from-primary/10 to-secondary/20 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-20"
+              style={{ backgroundImage: `url(${heroInterior})` }}
+            ></div>
+            <div className="relative container mx-auto px-4 text-center">
               <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6 fade-in">
                 Our Services
               </h1>
@@ -114,6 +143,42 @@ const ServicesPage = () => {
               </div>
             </div>
           </section>
+
+          {/* Process Section */}
+          <section className="py-20 bg-secondary/30">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                  Our Process
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  A streamlined approach to bringing your vision to life
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {process.map((step, index) => {
+                  const Icon = step.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="text-center fade-in"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <div className="inline-flex p-6 rounded-full bg-primary/10 mb-4">
+                        <Icon className="w-10 h-10 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-heading font-bold text-foreground mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-muted-foreground">{step.description}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <Testimonials />
 
           {/* CTA Section */}
           <section className="py-20 bg-secondary/30">

@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import heroInterior from "@/assets/hero-interior.jpg";
 
 const ContactPage = () => {
   return (
@@ -21,6 +22,22 @@ const ContactPage = () => {
       <div className="min-h-screen">
         <Navbar />
         <main className="pt-20">
+          {/* Hero Section */}
+          <section className="relative py-20 bg-gradient-to-br from-primary/10 to-secondary/20 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-20"
+              style={{ backgroundImage: `url(${heroInterior})` }}
+            ></div>
+            <div className="relative container mx-auto px-4 text-center">
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6 fade-in">
+                Contact Us
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto fade-in">
+                Let's discuss your vision and bring your dream space to life
+              </p>
+            </div>
+          </section>
+
           <Contact />
         </main>
         <Footer />

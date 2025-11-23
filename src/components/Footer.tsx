@@ -88,6 +88,42 @@ const Footer = () => {
                 );
               })}
             </div>
+            <div className="mt-4 pt-4 border-t border-border/50">
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 rounded-lg p-3 border border-green-200/50 dark:border-green-800/50">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-xs">T</span>
+                    </div>
+                    <span className="font-semibold text-foreground text-sm">Trustpilot</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold text-green-700 dark:text-green-400 text-sm">4.9</div>
+                    <div className="text-xs text-muted-foreground">Excellent</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    {[...Array(4)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 text-green-500 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                    <svg className="w-4 h-4 text-green-500" viewBox="0 0 20 20">
+                      <defs>
+                        <linearGradient id="halfStar">
+                          <stop offset="50%" stopColor="currentColor" />
+                          <stop offset="50%" stopColor="transparent" />
+                        </linearGradient>
+                      </defs>
+                      <path fill="url(#halfStar)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      <path fill="currentColor" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  </div>
+                  <div className="text-xs text-muted-foreground">312 reviews</div>
+                </div>
+              </div>
+            </div>
             <div className="mt-6">
               <Button 
                 onClick={scrollToTop}

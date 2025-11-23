@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Services from "@/components/Services";
 import About from "@/components/About";
-import Contact from "@/components/Contact";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
 const Home = () => {
@@ -29,7 +29,7 @@ const Home = () => {
           <Projects />
           <Services />
           <About />
-          <Contact />
+          <Testimonials />
         </main>
         <Footer />
       </div>

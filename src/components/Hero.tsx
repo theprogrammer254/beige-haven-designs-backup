@@ -67,8 +67,8 @@ const Hero = () => {
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-foreground mb-6 leading-tight">
           Transforming Spaces<br />Into Timeless Elegance
         </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-          Bespoke interior design and architectural services that bring your vision to life with sophistication and style
+        <p className="text-xl md:text-2xl text-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
+          Custom interior design and architecture services that bring your vision to life with elegance and style
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link to="/gallery">
