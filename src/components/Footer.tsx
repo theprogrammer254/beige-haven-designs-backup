@@ -9,7 +9,7 @@ const Footer = () => {
     { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
     { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:hello@eleganceinteriors.com", label: "Email" },
+    { icon: Mail, href: "mailto:info@epiqueinteriors.com", label: "Email" },
   ];
 
   const scrollToTop = () => {
@@ -29,17 +29,17 @@ const Footer = () => {
               Transforming spaces into timeless elegance through bespoke design and architectural excellence. Creating beautiful, functional spaces since 2015.
             </p>
             <div className="space-y-3">
-              <a href="tel:+15551234567" className="flex items-center text-muted-foreground hover:text-primary transition-colors group">
+              <a href="tel:+254745508328" className="flex items-center text-muted-foreground hover:text-primary transition-colors group">
                 <Phone className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                <span>+1 (555) 123-4567</span>
+                <span>+254 745 508 328</span>
               </a>
-              <a href="mailto:hello@eleganceinteriors.com" className="flex items-center text-muted-foreground hover:text-primary transition-colors group">
+              <a href="mailto:info@epiqueinteriors.com" className="flex items-center text-muted-foreground hover:text-primary transition-colors group">
                 <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                <span>hello@eleganceinteriors.com</span>
+                <span>info@epiqueinteriors.com</span>
               </a>
               <div className="flex items-center text-muted-foreground">
                 <MapPin className="w-4 h-4 mr-2" />
-                <span>123 Design Street, New York, NY 10001</span>
+                <span>Nairobi, Kenya (Operating throughout the country)</span>
               </div>
             </div>
           </div>

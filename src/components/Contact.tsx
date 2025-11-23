@@ -30,19 +30,19 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      detail: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      detail: "+254 745 508 328",
+      link: "tel:+254745508328",
     },
     {
       icon: Mail,
       title: "Email",
-      detail: "hello@eleganceinteriors.com",
-      link: "mailto:hello@eleganceinteriors.com",
+      detail: "info@epiqueinteriors.com",
+      link: "mailto:info@epiqueinteriors.com",
     },
     {
       icon: MapPin,
       title: "Location",
-      detail: "123 Design Street, New York, NY 10001",
+      detail: "Nairobi, Kenya (Operating throughout the country)",
       link: "#",
     },
   ];
