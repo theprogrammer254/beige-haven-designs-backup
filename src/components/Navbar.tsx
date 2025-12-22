@@ -32,17 +32,18 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center h-20 relative">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo - Far Left */}
           <Link 
             to="/" 
-            className="absolute left-0 text-2xl md:text-3xl font-heading font-bold text-foreground hover:text-primary transition-colors relative group"
+            className="text-2xl md:text-3xl font-heading font-bold text-foreground hover:text-primary transition-colors relative group"
           >
             Epique Interiors
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
           </Link>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -60,7 +61,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Side Actions */}
-          <div className="absolute right-0 hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
             <Link to="/contact">
               <Button variant="default" size="lg" className="shadow-md hover:shadow-lg transition-shadow">
@@ -70,7 +71,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden absolute right-0 flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
             <button
               className="text-foreground hover:text-primary transition-colors p-2 rounded-lg hover:bg-primary/10"
