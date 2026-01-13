@@ -22,9 +22,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <h3 className="text-3xl font-heading font-bold text-foreground mb-4">
-              Epique Interiors
-            </h3>
+            <Link to="/" className="inline-block mb-4 group">
+              <img
+                src="/epique_logo.png"
+                alt="Epique Interiors"
+                className="h-32 w-auto transition-transform duration-300 group-hover:scale-105 filter drop-shadow-2xl"
+              />
+            </Link>
             <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
               Transforming spaces into timeless elegance through bespoke design and architectural excellence. Creating beautiful, functional spaces since 2015.
             </p>

@@ -32,14 +32,17 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24 md:h-28">
           {/* Logo - Far Left */}
-          <Link 
-            to="/" 
-            className="text-2xl md:text-3xl font-heading font-bold text-foreground hover:text-primary transition-colors relative group"
+          <Link
+            to="/"
+            className="relative group flex items-center rounded-lg dark:bg-white/10 dark:p-2 transition-all duration-300"
           >
-            Epique Interiors
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+            <img
+              src="/epique_logo.png"
+              alt="Epique Interiors"
+              className="h-16 md:h-20 w-auto transition-transform duration-300 group-hover:scale-105 filter drop-shadow-xl dark:drop-shadow-lg dark:brightness-110 dark:contrast-110"
+            />
           </Link>
 
           {/* Desktop Navigation - Centered */}
